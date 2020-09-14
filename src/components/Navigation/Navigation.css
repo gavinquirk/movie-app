@@ -1,0 +1,14 @@
+.Navigation {
+  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.nav-items {
+  display: flex;
+}
+
+.nav-item {
+  padding: 3px 5px;
+}
