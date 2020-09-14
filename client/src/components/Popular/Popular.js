@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 export default class Popular extends Component {
+  componentDidMount() {
+    // TEMP
+    fetch('http://localhost:5000/')
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
+
   render() {
     return (
       <div className='Popular'>
