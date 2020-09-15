@@ -10,11 +10,11 @@ const app = express();
 app.use(cors());
 
 // Routes
-app.get('/popular', function (req, res) {
+app.get('/popular', (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
   fetch(url)
-    .then((res) => res.text())
-    .then((body) => res.json(body));
+    .then((response) => response.json())
+    .then((json) => res.json(json));
 });
 
 const port = process.env.PORT || 5000;

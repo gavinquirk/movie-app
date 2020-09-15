@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 
 export default class Popular extends Component {
+  state = {
+    movies: [],
+  };
+
   componentDidMount() {
-    // TEMP
-    fetch('http://localhost:5000/popular')
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    this.getPopularMovies();
   }
+
+  getPopularMovies = async () => {
+    const url = 'http://localhost:5000/popular';
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => this.setState({ movies: json }));
+  };
 
   render() {
     return (
