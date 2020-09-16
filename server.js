@@ -10,6 +10,15 @@ const app = express();
 app.use(cors());
 
 // Routes
+// Get Movie By ID
+app.get('/movies/:id', (req, res) => {
+  const movie_id = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
 // Get Popular Movies
 app.get('/movies/popular', (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
@@ -18,10 +27,10 @@ app.get('/movies/popular', (req, res) => {
     .then((json) => res.json(json));
 });
 
-// Get Movie By ID
-app.get('/movies/:id', (req, res) => {
+// Get Similar Movies
+app.get('/movies/similar/:id', (req, res) => {
   const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
