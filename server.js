@@ -10,8 +10,18 @@ const app = express();
 app.use(cors());
 
 // Routes
-app.get('/popular', (req, res) => {
+// Get Popular Movies
+app.get('/movies/popular', (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
+// Get Movie By ID
+app.get('/movies/:id', (req, res) => {
+  const movie_id = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
