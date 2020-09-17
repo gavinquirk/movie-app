@@ -1,13 +1,22 @@
 require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const fetch = require('node-fetch');
+
+const db = process.env.MLAB_URI;
 
 // Initialize server
 const app = express();
 
 // Apply middleware
 app.use(cors());
+
+// Connect to MongoDB
+mongoose
+  .connect(db)
+  .then(() => console.log('MongoDB Connected'))
+  .catch((error) => console.log(error));
 
 // Routes
 
@@ -30,7 +39,6 @@ app.get('/movies/similar/:id', (req, res) => {
 
 // Get Top Rated Movies
 app.get('/movies/top', (req, res) => {
-  console.log('Top Route Hit');
   const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
