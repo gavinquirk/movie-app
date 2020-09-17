@@ -2,9 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const fetch = require('node-fetch');
 
 const db = process.env.MLAB_URI;
+
+// Import Routes
+const movies = require('./routes/api/movies');
 
 // Initialize server
 const app = express();
@@ -18,41 +20,8 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch((error) => console.log(error));
 
-// Routes
-
-// Get Popular Movies
-app.get('/movies/popular', (req, res) => {
-  const url = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
-
-// Get Similar Movies
-app.get('/movies/similar/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
-
-// Get Top Rated Movies
-app.get('/movies/top', (req, res) => {
-  const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
-
-// Get Movie By ID. Must come last because of id param
-app.get('/movies/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
+// Use Routes
+app.use('/api/movies', movies);
 
 const port = process.env.PORT || 5000;
 
