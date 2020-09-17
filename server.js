@@ -10,14 +10,6 @@ const app = express();
 app.use(cors());
 
 // Routes
-// Get Movie By ID
-app.get('/movies/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
 
 // Get Popular Movies
 app.get('/movies/popular', (req, res) => {
@@ -31,6 +23,24 @@ app.get('/movies/popular', (req, res) => {
 app.get('/movies/similar/:id', (req, res) => {
   const movie_id = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
+// Get Top Rated Movies
+app.get('/movies/top', (req, res) => {
+  console.log('Top Route Hit');
+  const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
+// Get Movie By ID. Must come last because of id param
+app.get('/movies/:id', (req, res) => {
+  const movie_id = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
