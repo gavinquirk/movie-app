@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 // Load User Model
 const User = require('../../models/User');
@@ -23,7 +24,6 @@ router.post('/register', (req, res) => {
       return res.status(400).json(errors);
     } else {
       // If user doesn't exist
-      console.log(req.body);
       // Create new User using submitted data
       const newUser = new User({
         name: req.body.name,
@@ -31,10 +31,17 @@ router.post('/register', (req, res) => {
         password: req.body.password,
       });
 
-      newUser
-        .save()
-        .then((user) => res.json(user))
-        .catch((error) => console.log(error));
+      // Generate salt for password storage
+      bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(newUser.password, salt, (error, hash) => {
+          if (error) throw error;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then((user) => res.json({ id: user._id }))
+            .catch((error) => console.log(error));
+        });
+      });
     }
   });
 });
