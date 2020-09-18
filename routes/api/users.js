@@ -13,7 +13,9 @@ const User = require('../../models/User');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-// Register User
+// @route   POST api/users/register
+// @desc    Register new user
+// @access  Public
 router.post('/register', (req, res) => {
   // Validation
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -50,7 +52,9 @@ router.post('/register', (req, res) => {
   });
 });
 
-// Login User
+// @route   GET api/users/login
+// @desc    Login User / Return JWT Token
+// @access  Public
 router.post('/login', (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
@@ -98,7 +102,9 @@ router.post('/login', (req, res) => {
   });
 });
 
-// Get Current User
+// @route   GET api/users/current
+// @desc    Retreive current user
+// @access  Public
 router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),

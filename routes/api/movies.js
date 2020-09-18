@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
-// Get Popular Movies
+// @route   GET api/movies/popular
+// @desc    Retreive most popular movies
+// @access  Public
 router.get('/popular', (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
   fetch(url)
@@ -10,7 +12,9 @@ router.get('/popular', (req, res) => {
     .then((json) => res.json(json));
 });
 
-// Get Similar Movies
+// @route   GET api/movies/similar/:id
+// @desc    Retreive movies similar to supplied id
+// @access  Public
 router.get('/similar/:id', (req, res) => {
   const movie_id = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
@@ -19,7 +23,9 @@ router.get('/similar/:id', (req, res) => {
     .then((json) => res.json(json));
 });
 
-// Get Top Rated Movies
+// @route   GET api/movies/top
+// @desc    Retreive top rated movies
+// @access  Public
 router.get('/top', (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
   fetch(url)
@@ -27,7 +33,9 @@ router.get('/top', (req, res) => {
     .then((json) => res.json(json));
 });
 
-// Get Movie By ID. Must come last because of id param
+// @route   GET api/movies/:id
+// @desc    Retreive movie by id. Must come last
+// @access  Public
 router.get('/:id', (req, res) => {
   const movie_id = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
