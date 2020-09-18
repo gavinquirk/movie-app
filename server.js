@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+var colors = require('colors');
 
 const db = process.env.MLAB_URI;
 
@@ -22,8 +23,8 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose
-  .connect(db)
-  .then(() => console.log('MongoDB Connected'))
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB Connected'.blue))
   .catch((error) => console.log(error));
 
 // Use Routes
@@ -32,4 +33,4 @@ app.use('/api/users', users);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`.yellow));

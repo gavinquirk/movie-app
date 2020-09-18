@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Load User Model
 const User = require('../../models/User');
 
 // Load input validation
 const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // Register User
-// TODO: hash passwords before storing
 router.post('/register', (req, res) => {
   // Validation
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -43,6 +44,54 @@ router.post('/register', (req, res) => {
         });
       });
     }
+  });
+});
+
+// Login User
+router.post('/login', (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // Find user by email
+  User.findOne({ email }).then((user) => {
+    //Check for user
+    // Respond with 404 error if user not found
+    if (!user) {
+      errors.email = 'User not found';
+      return res.status(404).json(errors);
+    }
+
+    // Check password
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        // If password is a match create JWT Payload
+        const payload = { id: user.id, name: user.name };
+
+        // Sign Token
+        jwt.sign(
+          payload,
+          process.env.AUTH_SECRET,
+          { expiresIn: 3600 },
+          (error, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token,
+            });
+          }
+        );
+      } else {
+        // Respond with 400 error if password incorrect
+        errors.password = 'Password is incorrect';
+        return res.status(400).json(errors);
+      }
+    });
   });
 });
 
