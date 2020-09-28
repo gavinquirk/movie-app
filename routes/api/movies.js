@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const scraper = require('../../scrapers/scrapers');
 
 // @route   GET api/movies/popular
 // @desc    Retreive most popular movies
 // @access  Public
 router.get('/popular', (req, res) => {
-  const url = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  scraper.imdbPopular().then((data) => {
+    console.log(data);
+    res.json(data);
+  });
 });
 
 // @route   GET api/movies/similar/:id
