@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-async function imdbPopular() {
+const imdbPopular = async () => {
   // Open browser and go to imdb popular page
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -70,6 +70,6 @@ async function imdbPopular() {
   });
   await browser.close();
   return data;
-}
+};
 
 module.exports = { imdbPopular };
