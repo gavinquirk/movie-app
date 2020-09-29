@@ -8,7 +8,6 @@ const scraper = require('../../scrapers/scrapers');
 // @access  Public
 router.get('/popular', (req, res) => {
   scraper.imdbPopular().then((data) => {
-    console.log(data);
     res.json(data);
   });
 });
@@ -28,10 +27,9 @@ router.get('/similar/:id', (req, res) => {
 // @desc    Retreive top rated movies
 // @access  Public
 router.get('/top', (req, res) => {
-  const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  scraper.imdbTop().then((data) => {
+    res.json(data);
+  });
 });
 
 // @route   GET api/movies/:id
