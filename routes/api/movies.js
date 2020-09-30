@@ -33,14 +33,13 @@ router.get('/top', (req, res) => {
 });
 
 // @route   GET api/movies/:id
-// @desc    Retreive movie by id. Must come last
+// @desc    Retreive movie by id
 // @access  Public
 router.get('/:id', (req, res) => {
   const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  scraper.imdbSingle(movie_id).then((data) => {
+    res.json(data);
+  });
 });
 
 module.exports = router;
