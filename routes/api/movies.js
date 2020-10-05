@@ -15,13 +15,13 @@ router.get('/popular', (req, res) => {
 // @route   GET api/movies/similar/:id
 // @desc    Retreive movies similar to supplied id
 // @access  Public
-router.get('/similar/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
+// router.get('/similar/:id', (req, res) => {
+//   const movie_id = req.params.id;
+//   const url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`;
+//   fetch(url)
+//     .then((response) => response.json())
+//     .then((json) => res.json(json));
+// });
 
 // @route   GET api/movies/top
 // @desc    Retreive top rated movies
