@@ -8,11 +8,15 @@ const MovieSchema = new Schema({
     required: true,
   },
   year: {
-    type: String,
+    type: Number,
     required: false,
   },
   rating: {
     type: Number,
+    required: false,
+  },
+  poster: {
+    type: String,
     required: false,
   },
   smallPoster: {

@@ -36,12 +36,33 @@ router.get('/top', (req, res) => {
 });
 
 // @route   GET api/movies/:id
-// @desc    Retreive movie by id
+// @desc    Retreive movie by imdb id
 // @access  Public
 router.get('/:id', (req, res) => {
-  const movie_id = req.params.id;
-  scraper.imdbSingle(movie_id).then((data) => {
-    res.json(data);
+  // Check for movie in db BY IMDB ID. If doesnt exist, scrape movie from IMDB and add to db.
+
+  // Retreive submitted imdb id
+  const imdbId = req.params.id;
+
+  // Search database for movie
+  Movie.findOne({ imdbId }).then((movie) => {
+    // If movie already exists, send db data
+    if (movie) {
+      return res.status(200).json(movie);
+    } else {
+      // If movie does not exist, scrape data from imdb
+      scraper.imdbSingle(imdbId).then((data) => {
+        // Create new Movie object and save
+        const newMovie = new Movie({
+          ...data,
+        });
+        // Save movie to db and respond with data
+        newMovie
+          .save()
+          .then((movie) => res.json({ ...movie._doc }))
+          .catch((error) => console.log(error));
+      });
+    }
   });
 });
 
