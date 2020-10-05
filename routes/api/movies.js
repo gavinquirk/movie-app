@@ -3,6 +3,9 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const scraper = require('../../scrapers/scrapers');
 
+// Load Movie Model
+const Movie = require('../../models/Movie');
+
 // @route   GET api/movies/popular
 // @desc    Retreive most popular movies
 // @access  Public
