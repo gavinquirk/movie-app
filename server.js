@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var colors = require('colors');
+const rateLimit = require('express-rate-limit');
 
 const db = process.env.MLAB_URI;
 
@@ -14,9 +15,16 @@ const users = require('./routes/api/users');
 // Initialize server
 const app = express();
 
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 min
+  max: 500,
+});
+
 // Body Parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(limiter);
 
 // Apply middleware
 app.use(cors());
