@@ -6,7 +6,7 @@ const cors = require('cors');
 var colors = require('colors');
 const rateLimit = require('express-rate-limit');
 
-const db = process.env.MLAB_URI;
+const db = process.env.MONGO_URI;
 
 // Import Routes
 const movies = require('./routes/api/movies');

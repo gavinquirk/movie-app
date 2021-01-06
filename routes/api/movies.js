@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 const scraper = require('../../scrapers/scrapers');
+const { formatImdbId } = require('../../utilities/helpers');
 
 // Load Movie Model
 const Movie = require('../../models/Movie');
@@ -42,7 +43,7 @@ router.get('/:id', (req, res) => {
   // Check for movie in db BY IMDB ID. If doesnt exist, scrape movie from IMDB and add to db.
 
   // Retreive submitted imdb id
-  const imdbId = req.params.id;
+  const imdbId = formatImdbId(req.params.id);
 
   // Search database for movie
   Movie.findOne({ imdbId }).then((movie) => {
