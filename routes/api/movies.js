@@ -28,8 +28,8 @@ router.get('/popular', (req, res) => {
 // @desc    Retreive movies similar to supplied id
 // @access  Public
 router.get('/similar/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
@@ -39,8 +39,8 @@ router.get('/similar/:id', (req, res) => {
 // @desc    Retreive recommended movies based on id
 // @access  Public
 router.get('/recommendations/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`;
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
@@ -50,8 +50,8 @@ router.get('/recommendations/:id', (req, res) => {
 // @desc    Retreive watch providers by id
 // @access  Public
 router.get('/providers/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}/watch/providers?api_key=${API_KEY}`;
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
@@ -61,8 +61,8 @@ router.get('/providers/:id', (req, res) => {
 // @desc    Retreive reviews by id
 // @access  Public
 router.get('/reviews/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
@@ -72,7 +72,6 @@ router.get('/reviews/:id', (req, res) => {
 // @desc    Retreive upcoming releases
 // @access  Public
 router.get('/upcoming', (req, res) => {
-  const movie_id = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
@@ -83,8 +82,8 @@ router.get('/upcoming', (req, res) => {
 // @desc    Get single movie
 // @access  Public
 router.get('/:id', (req, res) => {
-  const movie_id = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
