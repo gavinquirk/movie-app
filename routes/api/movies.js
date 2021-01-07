@@ -8,7 +8,7 @@ const API_KEY = process.env.TMDB_API_KEY;
 // @desc    Retreive top rated movies
 // @access  Public
 router.get('/top', (req, res) => {
-  const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=5b9f102de58c3e10aef5b0af9364828a&language=en-US&page=1`;
+  const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
@@ -19,6 +19,9 @@ router.get('/top', (req, res) => {
 // @access  Public
 router.get('/popular', (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1&region=wadd`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
 });
 
 // @route   GET api/movies/similar/:id
