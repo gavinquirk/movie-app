@@ -79,6 +79,16 @@ router.get('/reviews/:id', (req, res) => {
 //     .then((json) => res.json(json));
 // });
 
+// @route   GET api/shows/trending
+// @desc    Retreive trending shows
+// @access  Public
+router.get('/trending', (req, res) => {
+  const url = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
 // @route   GET api/shows/:id
 // @desc    Get single movie
 // @access  Public

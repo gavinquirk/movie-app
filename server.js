@@ -11,6 +11,7 @@ const db = process.env.MONGO_URI;
 // Import Routes
 const movies = require('./routes/api/movies');
 const shows = require('./routes/api/shows');
+const moviesAndShows = require('./routes/api/moviesAndShows');
 const users = require('./routes/api/users');
 
 // Initialize server
@@ -39,6 +40,7 @@ mongoose
 // Use Routes
 app.use('/api/movies', movies);
 app.use('/api/shows', shows);
+app.use('/api/all', moviesAndShows);
 app.use('/api/users', users);
 
 const port = process.env.PORT || 5000;
