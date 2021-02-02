@@ -11,3 +11,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.App {
+  background: radial-gradient(
+    circle,
+    rgba(55, 54, 57, 1) 0%,
+    rgba(34, 34, 36, 1) 35%,
+    rgba(13, 14, 14, 1) 100%
+  );
+}
