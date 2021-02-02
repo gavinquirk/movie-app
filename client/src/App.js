@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Components
 import Navigation from './components/Navigation/Navigation';
-import Home from './components/Home/Home';
-import Popular from './components/Popular/Popular';
+import Home from './pages/Home/Home';
+import Popular from './pages/Popular/Popular';
 
 function App() {
   return (

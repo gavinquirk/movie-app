@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
-import Card from '../Card/Card';
+import Card from '../../components/Card/Card';
 
 export default class Home extends Component {
   render() {
