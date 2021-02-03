@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import './Home.css';
 import Card from '../../components/Card/Card';
+import Grid from '../../components/Grid/Grid';
 
 export default class Home extends Component {
   render() {
     const data = require('./tempdata.json');
-    console.log(data);
+    const movieList = data.results;
     // TODO: Fetch data from api and store in state
+    console.log(movieList);
 
     return (
       <div className='Home'>
-        <section id='top'>
-          {/* TODO: Map through cards here */}
-          {data.results.map((result) => (
-            <Card key={result.id} data={result} />
-          ))}
-        </section>
+        <Grid data={movieList} />
       </div>
     );
   }
