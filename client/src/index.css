@@ -1,3 +1,11 @@
+/* Global Variables */
+:root {
+  --text-light: rgb(209, 210, 212);
+  --heading-margin: 20px;
+}
+
+/* Global Styles */
+
 * {
   padding: 0;
   margin: 0;
@@ -21,6 +29,10 @@ ul {
   list-style: none;
 }
 
+h2 {
+  margin-bottom: var(--heading-margin);
+}
+
 .App {
   background: radial-gradient(
     circle,
@@ -28,4 +40,5 @@ ul {
     rgba(34, 34, 36, 1) 35%,
     rgba(13, 14, 14, 1) 100%
   );
+  color: var(--text-light);
 }
