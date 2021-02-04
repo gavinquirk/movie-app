@@ -2,6 +2,7 @@
 :root {
   --text-light: rgb(209, 210, 212);
   --heading-margin: 20px;
+  --padding-default: 20px;
 }
 
 /* Global Styles */
@@ -31,6 +32,11 @@ ul {
 
 h2 {
   margin-bottom: var(--heading-margin);
+}
+
+section {
+  padding-top: var(--padding-default);
+  padding-bottom: var(--padding-default);
 }
 
 .App {
