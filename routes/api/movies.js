@@ -18,7 +18,7 @@ router.get('/top', (req, res) => {
 // @desc    Retreive most popular movies
 // @access  Public
 router.get('/popular', (req, res) => {
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1&region=wadd`;
+  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
   fetch(url)
     .then((response) => response.json())
     .then((json) => res.json(json));
