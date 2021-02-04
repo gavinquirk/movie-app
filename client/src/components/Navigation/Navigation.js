@@ -14,7 +14,7 @@ export default class Navigation extends Component {
             <Link to='/'>Home</Link>
           </li>
           <li className='nav-item'>
-            <Link to='/popular'>Popular</Link>
+            <Link to='/movies'>Movies</Link>
           </li>
         </ul>
       </nav>

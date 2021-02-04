@@ -34,8 +34,6 @@ const Home = (props) => {
     setPopularShows(data.results);
   };
 
-  console.log(topMovies);
-
   return (
     <div className='Home'>
       <section className='logo'>

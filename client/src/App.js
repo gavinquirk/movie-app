@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Components
 import Navigation from './components/Navigation/Navigation';
 import Home from './pages/Home/Home';
-import Popular from './pages/Popular/Popular';
+import Movies from './pages/Movies/Movies';
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
       <div className='App'>
         <Navigation />
         <Switch>
-          <Route path='/popular'>
-            <Popular />
+          <Route path='/movies'>
+            <Movies />
           </Route>
           <Route path='/'>
             <Home />

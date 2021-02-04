@@ -30,6 +30,12 @@ ul {
   list-style: none;
 }
 
+h1 {
+  font-size: 50px;
+  letter-spacing: 4px;
+  margin-bottom: var(--heading-margin);
+}
+
 h2 {
   margin-bottom: var(--heading-margin);
 }
