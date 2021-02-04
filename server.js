@@ -1,18 +1,21 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-var colors = require('colors');
-const rateLimit = require('express-rate-limit');
+import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import colors from 'colors';
+import rateLimit from 'express-rate-limit';
+
+dotenv.config();
 
 const db = process.env.MONGO_URI;
 
 // Import Routes
-const movies = require('./routes/api/movies');
-const shows = require('./routes/api/shows');
-const moviesAndShows = require('./routes/api/moviesAndShows');
-const users = require('./routes/api/users');
+import movieRoutes from './routes/movieRoutes.js';
+import showRoutes from './routes/showRoutes.js';
+import movieAndShowRoutes from './routes/movieAndShowRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+s;
 
 // Initialize server
 const app = express();
@@ -23,7 +26,7 @@ const limiter = rateLimit({
   max: 500,
 });
 
-// Body Parser middleware
+// Express Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(limiter);
@@ -38,10 +41,10 @@ mongoose
   .catch((error) => console.log(error));
 
 // Use Routes
-app.use('/api/movies', movies);
-app.use('/api/shows', shows);
-app.use('/api/all', moviesAndShows);
-app.use('/api/users', users);
+app.use('/api/movies', movieRoutes);
+app.use('/api/shows', showRoutes);
+app.use('/api/all', movieAndShowRoutes);
+app.use('/api/users', userRoutes);
 
 const port = process.env.PORT || 5000;
 

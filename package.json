@@ -1,5 +1,6 @@
 {
   "name": "movie-app",
+  "type": "module",
   "version": "1.0.0",
   "description": "Share and compare movie choices with your friends",
   "main": "server.js",
@@ -27,6 +28,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "express-rate-limit": "^5.1.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.5",

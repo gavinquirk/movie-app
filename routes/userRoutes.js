@@ -4,14 +4,14 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-require('../../config/passport')(passport);
+require('../config/passport')(passport);
 
 // Load User Model
-const User = require('../../models/User');
+const User = require('../models/User');
 
 // Load input validation
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const validateRegisterInput = require('../validation/register');
+const validateLoginInput = require('../validation/login');
 
 // @route   POST api/users/register
 // @desc    Register new user
