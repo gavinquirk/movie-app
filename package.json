@@ -5,10 +5,9 @@
   "description": "Share and compare movie choices with your friends",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"node server.js\" \"npm start --prefix client\"",
-    "dev": "concurrently \"nodemon server.js\" \"npm start --prefix client\"",
-    "dev:server": "nodemon server.js"
+    "start": "concurrently \"node -r dotenv/config server.js\" \"npm start --prefix client\"",
+    "dev": "concurrently \"nodemon -r dotenv/config server.js\" \"npm start --prefix client\"",
+    "dev:server": "nodemon -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",

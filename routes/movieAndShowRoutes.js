@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const API_KEY = process.env.TMDB_API_KEY;
 
@@ -14,4 +14,4 @@ router.get('/trending', (req, res) => {
     .then((json) => res.json(json));
 });
 
-module.exports = router;
+export default router;

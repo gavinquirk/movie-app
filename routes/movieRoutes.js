@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const fetch = require('node-fetch');
-import { getTopMovies } from '../controllers/movieController';
+import fetch from 'node-fetch';
+import { getTopMovies } from '../controllers/movieController.js';
 
 const API_KEY = process.env.TMDB_API_KEY;
 
@@ -92,4 +92,4 @@ router.get('/:id', (req, res) => {
     .then((json) => res.json(json));
 });
 
-module.exports = router;
+export default router;

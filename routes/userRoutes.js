@@ -1,3 +1,5 @@
+// TODO: USER ROUTES TO BE CHANGED TO CUSTOM AUTH INSTEAD OF PASSPORT
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');

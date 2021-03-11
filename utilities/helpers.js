@@ -6,4 +6,4 @@ const formatImdbId = (imdbId) => {
   return trimmedId;
 };
 
-module.exports = { formatImdbId };
+export { formatImdbId };

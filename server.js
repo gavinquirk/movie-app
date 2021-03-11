@@ -6,16 +6,14 @@ import cors from 'cors';
 import colors from 'colors';
 import rateLimit from 'express-rate-limit';
 
-dotenv.config();
-
 const db = process.env.MONGO_URI;
 
 // Import Routes
 import movieRoutes from './routes/movieRoutes.js';
 import showRoutes from './routes/showRoutes.js';
 import movieAndShowRoutes from './routes/movieAndShowRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-s;
+// TODO: USER ROUTES TO BE CHANGED TO CUSTOM AUTH INSTEAD OF PASSPORT
+// import userRoutes from './routes/userRoutes.js';
 
 // Initialize server
 const app = express();
@@ -44,7 +42,7 @@ mongoose
 app.use('/api/movies', movieRoutes);
 app.use('/api/shows', showRoutes);
 app.use('/api/all', movieAndShowRoutes);
-app.use('/api/users', userRoutes);
+// app.use('/api/users', userRoutes);
 
 const port = process.env.PORT || 5000;
 
