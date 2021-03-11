@@ -1,43 +1,19 @@
 import express from 'express';
 const router = express.Router();
 import fetch from 'node-fetch';
-import { getTopMovies } from '../controllers/movieController.js';
+import {
+  getTopMovies,
+  getPopularMovies,
+  getSimilarMovies,
+  getRecommendedMovies,
+} from '../controllers/movieController.js';
 
 const API_KEY = process.env.TMDB_API_KEY;
 
 router.route('/').get(getTopMovies);
-
-// @route   GET api/movies/popular
-// @desc    Retreive most popular movies
-// @access  Public
-router.get('/popular', (req, res) => {
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
-
-// @route   GET api/movies/similar/:id
-// @desc    Retreive movies similar to supplied id
-// @access  Public
-router.get('/similar/:id', (req, res) => {
-  const movieId = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
-
-// @route   GET api/movies/recommendations/:id
-// @desc    Retreive recommended movies based on id
-// @access  Public
-router.get('/recommendations/:id', (req, res) => {
-  const movieId = req.params.id;
-  const url = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
-});
+router.route('/popular').get(getPopularMovies);
+router.route('/similar/:id').get(getSimilarMovies);
+router.route('/recommendations/:id').get(getRecommendedMovies);
 
 // @route   GET api/movies/providers/:id
 // @desc    Retreive watch providers by id
