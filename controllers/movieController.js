@@ -101,11 +101,11 @@ const getRecommendedMovies = asyncHandler(async (req, res) => {
 export {
   getTopMovies,
   getPopularMovies,
-  getSimilarMovies,
-  getRecommendedMovies,
-  getMovieProviders,
-  getMovieReviews,
   getUpcomingMovies,
   getTrendingMovies,
   getSingleMovie,
+  getSimilarMovies,
+  getMovieProviders,
+  getMovieReviews,
+  getRecommendedMovies,
 };
