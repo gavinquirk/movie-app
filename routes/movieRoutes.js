@@ -15,12 +15,12 @@ const router = express.Router();
 
 router.route('/top').get(getTopMovies);
 router.route('/popular').get(getPopularMovies);
-router.route('/similar/:id').get(getSimilarMovies);
-router.route('/recommendations/:id').get(getRecommendedMovies);
-router.route('/providers/:id').get(getMovieProviders);
-router.route('/reviews/:id').get(getMovieReviews);
 router.route('/upcoming').get(getUpcomingMovies);
 router.route('/trending').get(getTrendingMovies);
 router.route('/:id').get(getSingleMovie);
+router.route('/:id/similar').get(getSimilarMovies);
+router.route('/:id/providers').get(getMovieProviders);
+router.route('/:id/reviews').get(getMovieReviews);
+router.route('/:id/recommendations').get(getRecommendedMovies);
 
 export default router;
