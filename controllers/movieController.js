@@ -45,9 +45,67 @@ const getRecommendedMovies = asyncHandler(async (req, res) => {
     .then((json) => res.json(json));
 });
 
+// @route   GET api/movies/providers/:id
+// @desc    Retreive watch providers by id
+// @access  Public
+const getMovieProviders = asyncHandler(async (req, res) => {
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
+// @route   GET api/movies/reviews/:id
+// @desc    Retreive reviews by id
+// @access  Public
+const getMovieReviews = asyncHandler(async (req, res) => {
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
+// @route   GET api/movies/upcoming
+// @desc    Retreive upcoming releases
+// @access  Public
+const getUpcomingMovies = asyncHandler(async (req, res) => {
+  const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
+// @route   GET api/movies/trending
+// @desc    Retreive trending movies
+// @access  Public
+const getTrendingMovies = asyncHandler(async (req, res) => {
+  const url = `https://api.themoviedb.org/3/trending/movies/day?api_key=${API_KEY}&language=en-US`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
+// @route   GET api/movies/:id
+// @desc    Get single movie
+// @access  Public
+const getSingleMovie = asyncHandler(async (req, res) => {
+  const movieId = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => res.json(json));
+});
+
 export {
   getTopMovies,
   getPopularMovies,
   getSimilarMovies,
   getRecommendedMovies,
+  getMovieProviders,
+  getMovieReviews,
+  getUpcomingMovies,
+  getTrendingMovies,
+  getSingleMovie,
 };
