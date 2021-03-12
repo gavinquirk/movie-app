@@ -2,13 +2,13 @@ import express from 'express';
 import {
   getTopMovies,
   getPopularMovies,
-  getSimilarMovies,
-  getRecommendedMovies,
-  getMovieProviders,
-  getMovieReviews,
   getUpcomingMovies,
   getTrendingMovies,
   getSingleMovie,
+  getSimilarMovies,
+  getMovieProviders,
+  getMovieReviews,
+  getRecommendedMovies,
 } from '../controllers/movieController.js';
 
 const router = express.Router();
