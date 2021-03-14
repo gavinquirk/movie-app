@@ -1,10 +1,10 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import colors from 'colors';
 import rateLimit from 'express-rate-limit';
+import morgan from 'morgan';
+import connectDB from './config/db.js';
 
 const db = process.env.MONGO_URI;
 
@@ -15,8 +15,16 @@ import movieAndShowRoutes from './routes/movieAndShowRoutes.js';
 // TODO: USER ROUTES TO BE CHANGED TO CUSTOM AUTH INSTEAD OF PASSPORT
 // import userRoutes from './routes/userRoutes.js';
 
+// Connect to Database
+connectDB();
+
 // Initialize server
 const app = express();
+
+// Logging Middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 // Rate Limiting
 const limiter = rateLimit({
@@ -25,11 +33,8 @@ const limiter = rateLimit({
 });
 
 // Express Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(limiter);
-
-// Apply middleware
+app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
@@ -44,6 +49,11 @@ app.use('/api/shows', showRoutes);
 app.use('/api/all', movieAndShowRoutes);
 // app.use('/api/users', userRoutes);
 
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`.yellow));
+app.listen(
+  PORT,
+  console.log(
+    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+  )
+);
