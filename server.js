@@ -4,6 +4,7 @@ import cors from 'cors';
 import colors from 'colors';
 import rateLimit from 'express-rate-limit';
 import morgan from 'morgan';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
 
 const db = process.env.MONGO_URI;
@@ -48,6 +49,10 @@ app.use('/api/movies', movieRoutes);
 app.use('/api/shows', showRoutes);
 app.use('/api/all', movieAndShowRoutes);
 // app.use('/api/users', userRoutes);
+
+app.use(notFound);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
