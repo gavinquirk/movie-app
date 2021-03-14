@@ -14,7 +14,7 @@ import movieRoutes from './routes/movieRoutes.js';
 import showRoutes from './routes/showRoutes.js';
 import movieAndShowRoutes from './routes/movieAndShowRoutes.js';
 // TODO: USER ROUTES TO BE CHANGED TO CUSTOM AUTH INSTEAD OF PASSPORT
-// import userRoutes from './routes/userRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 // Connect to Database
 connectDB();
@@ -48,7 +48,7 @@ mongoose
 app.use('/api/movies', movieRoutes);
 app.use('/api/shows', showRoutes);
 app.use('/api/all', movieAndShowRoutes);
-// app.use('/api/users', userRoutes);
+app.use('/api/users', userRoutes);
 
 app.use(notFound);
 
