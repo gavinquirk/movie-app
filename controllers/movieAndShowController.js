@@ -8,9 +8,9 @@ const API_KEY = process.env.TMDB_API_KEY;
 // @access  Public
 const getAllTrending = asyncHandler(async (req, res) => {
   const url = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 export { getAllTrending };
