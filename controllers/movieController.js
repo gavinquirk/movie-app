@@ -8,9 +8,9 @@ const API_KEY = process.env.TMDB_API_KEY;
 // @access  Public
 const getTopMovies = asyncHandler(async (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/popular
@@ -18,9 +18,9 @@ const getTopMovies = asyncHandler(async (req, res) => {
 // @access  Public
 const getPopularMovies = asyncHandler(async (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/upcoming
@@ -28,9 +28,9 @@ const getPopularMovies = asyncHandler(async (req, res) => {
 // @access  Public
 const getUpcomingMovies = asyncHandler(async (req, res) => {
   const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/trending
@@ -38,9 +38,9 @@ const getUpcomingMovies = asyncHandler(async (req, res) => {
 // @access  Public
 const getTrendingMovies = asyncHandler(async (req, res) => {
   const url = `https://api.themoviedb.org/3/trending/movies/day?api_key=${API_KEY}&language=en-US`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/:id
@@ -49,9 +49,9 @@ const getTrendingMovies = asyncHandler(async (req, res) => {
 const getSingleMovie = asyncHandler(async (req, res) => {
   const movieId = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/:id/similar
@@ -60,9 +60,9 @@ const getSingleMovie = asyncHandler(async (req, res) => {
 const getSimilarMovies = asyncHandler(async (req, res) => {
   const movieId = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/:id/providers
@@ -71,9 +71,9 @@ const getSimilarMovies = asyncHandler(async (req, res) => {
 const getMovieProviders = asyncHandler(async (req, res) => {
   const movieId = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/:id/reviews
@@ -82,9 +82,9 @@ const getMovieProviders = asyncHandler(async (req, res) => {
 const getMovieReviews = asyncHandler(async (req, res) => {
   const movieId = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 // @route   GET api/movies/:id/recommendations
@@ -93,9 +93,9 @@ const getMovieReviews = asyncHandler(async (req, res) => {
 const getRecommendedMovies = asyncHandler(async (req, res) => {
   const movieId = req.params.id;
   const url = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.json(json));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.json(data);
 });
 
 export {
