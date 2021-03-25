@@ -1,0 +1,1 @@
+export const MOVIE_FETCH_TOP = 'MOVIE_FETCH_TOP';
