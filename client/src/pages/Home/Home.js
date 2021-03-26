@@ -5,28 +5,22 @@ import logo from './logo-large.png';
 import Loader from '../../components/Loader/Loader';
 import './Home.css';
 import { fetchTopMovies } from '../../actions/movieActions';
-import { fetchTopShows } from '../../actions/showActions';
+import { fetchTopShows, fetchPopularShows } from '../../actions/showActions';
 
 const Home = (props) => {
   const dispatch = useDispatch();
 
+  // State
   const topMovies = useSelector((state) => state.topMovies);
   const { topMoviesLoading } = topMovies;
 
   const topShows = useSelector((state) => state.topShows);
   const { topShowsLoading } = topShows;
 
-  // State
-  // const [topMovies, setTopMovies] = useState([]);
-  // const [topShows, setTopShows] = useState([]);
-  // const [popularShows, setPopularShows] = useState([]);
+  const popularShows = useSelector((state) => state.popularShows);
+  const { popularShowsLoading } = popularShows;
 
   // Hooks
-  // useEffect(() => {
-  // fetchTopMovies();
-  // fetchTopShows();
-  // fetchPopularShows();
-  // }, []);
   useEffect(() => {
     dispatch(fetchTopMovies());
   }, dispatch);
@@ -35,11 +29,9 @@ const Home = (props) => {
     dispatch(fetchTopShows());
   }, dispatch);
 
-  // const fetchPopularShows = async () => {
-  //   const response = await fetch('http://localhost:5000/api/shows/popular');
-  //   const data = await response.json();
-  //   setPopularShows(data.results);
-  // };
+  useEffect(() => {
+    dispatch(fetchPopularShows());
+  }, dispatch);
 
   return (
     <div className='Home'>
@@ -61,9 +53,13 @@ const Home = (props) => {
           <Carousel category={'Top Rated Shows'} data={topShows.shows} />
         )}
       </section>
-      {/* <section id='popular-shows'>
-        <Carousel category={'Popular Shows'} data={popularShows} />
-      </section> */}
+      <section id='popular-shows'>
+        {popularShowsLoading ? (
+          <Loader />
+        ) : (
+          <Carousel category={'Popular Shows'} data={popularShows.shows} />
+        )}
+      </section>
     </div>
   );
 };
