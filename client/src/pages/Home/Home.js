@@ -4,7 +4,7 @@ import Carousel from '../../components/Carousel/Carousel';
 import logo from './logo-large.png';
 import Loader from '../../components/Loader/Loader';
 import './Home.css';
-import { fetchTopMovies } from '../../actions/movieActions';
+import { fetchTopMovies, fetchPopularMovies } from '../../actions/movieActions';
 import {
   fetchTopShows,
   fetchPopularShows,
@@ -14,10 +14,15 @@ import {
 const Home = (props) => {
   const dispatch = useDispatch();
 
-  // State
+  // -- State --
+  // Movies
   const topMovies = useSelector((state) => state.topMovies);
   const { topMoviesLoading } = topMovies;
 
+  const popularMovies = useSelector((state) => state.popularMovies);
+  const { popularMoviesLoading } = popularMovies;
+
+  // Shows
   const topShows = useSelector((state) => state.topShows);
   const { topShowsLoading } = topShows;
 
@@ -27,11 +32,17 @@ const Home = (props) => {
   const trendingShows = useSelector((state) => state.trendingShows);
   const { trendingShowsLoading } = trendingShows;
 
-  // Hooks
+  // -- Hooks --
+  // Movies
   useEffect(() => {
     dispatch(fetchTopMovies());
   }, dispatch);
 
+  useEffect(() => {
+    dispatch(fetchPopularMovies());
+  }, dispatch);
+
+  // Shows
   useEffect(() => {
     dispatch(fetchTopShows());
   }, dispatch);
@@ -55,6 +66,13 @@ const Home = (props) => {
           <Loader />
         ) : (
           <Carousel category={'Top Rated Movies'} data={topMovies.movies} />
+        )}
+      </section>
+      <section id='popular-movies'>
+        {popularMoviesLoading ? (
+          <Loader />
+        ) : (
+          <Carousel category={'Popular Movies'} data={popularMovies.movies} />
         )}
       </section>
       <section id='top-rated-shows'>
