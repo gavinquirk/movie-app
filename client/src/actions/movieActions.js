@@ -5,6 +5,9 @@ import {
   MOVIE_POPULAR_REQUEST,
   MOVIE_POPULAR_SUCCESS,
   MOVIE_POPULAR_FAIL,
+  MOVIE_TRENDING_REQUEST,
+  MOVIE_TRENDING_SUCCESS,
+  MOVIE_TRENDING_FAIL,
 } from '../constants/movieConstants';
 
 export const fetchTopMovies = () => async (dispatch) => {
@@ -47,6 +50,30 @@ export const fetchPopularMovies = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: MOVIE_POPULAR_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const fetchTrendingMovies = () => async (dispatch) => {
+  try {
+    dispatch({ type: MOVIE_TRENDING_REQUEST });
+
+    const response = await fetch('http://localhost:5000/api/movies/popular');
+    const { results } = await response.json();
+
+    dispatch({
+      type: MOVIE_TRENDING_SUCCESS,
+      payload: {
+        results,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: MOVIE_TRENDING_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

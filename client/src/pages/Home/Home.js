@@ -4,7 +4,11 @@ import Carousel from '../../components/Carousel/Carousel';
 import logo from './logo-large.png';
 import Loader from '../../components/Loader/Loader';
 import './Home.css';
-import { fetchTopMovies, fetchPopularMovies } from '../../actions/movieActions';
+import {
+  fetchTopMovies,
+  fetchPopularMovies,
+  fetchTrendingMovies,
+} from '../../actions/movieActions';
 import {
   fetchTopShows,
   fetchPopularShows,
@@ -21,6 +25,9 @@ const Home = (props) => {
 
   const popularMovies = useSelector((state) => state.popularMovies);
   const { popularMoviesLoading } = popularMovies;
+
+  const trendingMovies = useSelector((state) => state.trendingMovies);
+  const { trendingMoviesLoading } = trendingMovies;
 
   // Shows
   const topShows = useSelector((state) => state.topShows);
@@ -40,6 +47,10 @@ const Home = (props) => {
 
   useEffect(() => {
     dispatch(fetchPopularMovies());
+  }, dispatch);
+
+  useEffect(() => {
+    dispatch(fetchTrendingMovies());
   }, dispatch);
 
   // Shows
@@ -87,6 +98,13 @@ const Home = (props) => {
           <Loader />
         ) : (
           <Carousel category={'Popular Shows'} data={popularShows.shows} />
+        )}
+      </section>
+      <section id='trending-movies'>
+        {trendingMoviesLoading ? (
+          <Loader />
+        ) : (
+          <Carousel category={'Trending Movies'} data={trendingMovies.movies} />
         )}
       </section>
       <section id='trending-shows'>

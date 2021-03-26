@@ -1,7 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { topMovieReducer, popularMovieReducer } from './reducers/movieReducers';
+import {
+  topMovieReducer,
+  popularMovieReducer,
+  trendingMovieReducer,
+} from './reducers/movieReducers';
 import {
   topShowReducer,
   popularShowReducer,
@@ -12,6 +16,7 @@ import {
 const reducer = combineReducers({
   topMovies: topMovieReducer,
   popularMovies: popularMovieReducer,
+  trendingMovies: trendingMovieReducer,
   topShows: topShowReducer,
   popularShows: popularShowReducer,
   trendingShows: trendingShowReducer,
