@@ -5,12 +5,16 @@ import logo from './logo-large.png';
 import Loader from '../../components/Loader/Loader';
 import './Home.css';
 import { fetchTopMovies } from '../../actions/movieActions';
+import { fetchTopShows } from '../../actions/showActions';
 
 const Home = (props) => {
   const dispatch = useDispatch();
 
   const topMovies = useSelector((state) => state.topMovies);
-  const { loading } = topMovies;
+  const { topMoviesLoading } = topMovies;
+
+  const topShows = useSelector((state) => state.topShows);
+  const { topShowsLoading } = topShows;
 
   // State
   // const [topMovies, setTopMovies] = useState([]);
@@ -27,11 +31,9 @@ const Home = (props) => {
     dispatch(fetchTopMovies());
   }, dispatch);
 
-  // const fetchTopShows = async () => {
-  //   const response = await fetch('http://localhost:5000/api/shows/top');
-  //   const data = await response.json();
-  //   setTopShows(data.results);
-  // };
+  useEffect(() => {
+    dispatch(fetchTopShows());
+  }, dispatch);
 
   // const fetchPopularShows = async () => {
   //   const response = await fetch('http://localhost:5000/api/shows/popular');
@@ -46,16 +48,20 @@ const Home = (props) => {
         <h1>Movie App</h1>
       </section>
       <section id='top-rated-movies'>
-        {loading ? (
+        {topMoviesLoading ? (
           <Loader />
         ) : (
           <Carousel category={'Top Rated Movies'} data={topMovies.movies} />
         )}
       </section>
-      {/* <section id='top-rated-shows'>
-        <Carousel category={'Top Rated Shows'} data={topShows} />
+      <section id='top-rated-shows'>
+        {topShowsLoading ? (
+          <Loader />
+        ) : (
+          <Carousel category={'Top Rated Shows'} data={topShows.shows} />
+        )}
       </section>
-      <section id='popular-shows'>
+      {/* <section id='popular-shows'>
         <Carousel category={'Popular Shows'} data={popularShows} />
       </section> */}
     </div>

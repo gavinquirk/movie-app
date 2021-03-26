@@ -13,11 +13,11 @@ export const topMovieReducer = (state = { movies: [] }, action) => {
       return { loading: true, movies: [] };
     case MOVIE_TOP_SUCCESS:
       return {
-        loading: false,
+        topMoviesLoading: false,
         movies: action.payload.results,
       };
     case MOVIE_TOP_FAIL:
-      return { loading: false, error: action.payload };
+      return { topMoviesLoading: false, error: action.payload };
     default:
       return state;
   }

@@ -1,0 +1,3 @@
+export const SHOW_TOP_REQUEST = 'SHOW_TOP_REQUEST';
+export const SHOW_TOP_SUCCESS = 'SHOW_TOP_SUCCESS';
+export const SHOW_TOP_FAIL = 'SHOW_TOP_FAIL';
