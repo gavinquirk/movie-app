@@ -49,7 +49,7 @@ const Home = (props) => {
         {loading ? (
           <Loader />
         ) : (
-          <Carousel category={'Top Rated Movies'} data={topMovies.topMovies} />
+          <Carousel category={'Top Rated Movies'} data={topMovies.movies} />
         )}
       </section>
       {/* <section id='top-rated-shows'>

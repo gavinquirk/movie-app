@@ -9,8 +9,7 @@ export const fetchTopMovies = () => async (dispatch) => {
     dispatch({ type: MOVIE_TOP_REQUEST });
 
     const response = await fetch('http://localhost:5000/api/movies/top');
-    const data = await response.json();
-    const results = data.results;
+    const { results } = await response.json();
 
     dispatch({
       type: MOVIE_TOP_SUCCESS,
