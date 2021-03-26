@@ -8,6 +8,9 @@ import {
   MOVIE_TRENDING_REQUEST,
   MOVIE_TRENDING_SUCCESS,
   MOVIE_TRENDING_FAIL,
+  MOVIE_UPCOMING_REQUEST,
+  MOVIE_UPCOMING_SUCCESS,
+  MOVIE_UPCOMING_FAIL,
 } from '../constants/movieConstants';
 
 export const fetchTopMovies = () => async (dispatch) => {
@@ -62,7 +65,7 @@ export const fetchTrendingMovies = () => async (dispatch) => {
   try {
     dispatch({ type: MOVIE_TRENDING_REQUEST });
 
-    const response = await fetch('http://localhost:5000/api/movies/popular');
+    const response = await fetch('http://localhost:5000/api/movies/trending');
     const { results } = await response.json();
 
     dispatch({
@@ -74,6 +77,30 @@ export const fetchTrendingMovies = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: MOVIE_TRENDING_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const fetchUpcomingMovies = () => async (dispatch) => {
+  try {
+    dispatch({ type: MOVIE_UPCOMING_REQUEST });
+
+    const response = await fetch('http://localhost:5000/api/movies/upcoming');
+    const { results } = await response.json();
+
+    dispatch({
+      type: MOVIE_UPCOMING_SUCCESS,
+      payload: {
+        results,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: MOVIE_UPCOMING_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -8,6 +8,7 @@ import {
   fetchTopMovies,
   fetchPopularMovies,
   fetchTrendingMovies,
+  fetchUpcomingMovies,
 } from '../../actions/movieActions';
 import {
   fetchTopShows,
@@ -28,6 +29,9 @@ const Home = (props) => {
 
   const trendingMovies = useSelector((state) => state.trendingMovies);
   const { trendingMoviesLoading } = trendingMovies;
+
+  const upcomingMovies = useSelector((state) => state.upcomingMovies);
+  const { upcomingMoviesLoading } = upcomingMovies;
 
   // Shows
   const topShows = useSelector((state) => state.topShows);
@@ -51,6 +55,10 @@ const Home = (props) => {
 
   useEffect(() => {
     dispatch(fetchTrendingMovies());
+  }, dispatch);
+
+  useEffect(() => {
+    dispatch(fetchUpcomingMovies());
   }, dispatch);
 
   // Shows
@@ -112,6 +120,13 @@ const Home = (props) => {
           <Loader />
         ) : (
           <Carousel category={'Trending Shows'} data={trendingShows.shows} />
+        )}
+      </section>
+      <section id='upcoming-movies'>
+        {upcomingMoviesLoading ? (
+          <Loader />
+        ) : (
+          <Carousel category={'Upcoming Movies'} data={upcomingMovies.movies} />
         )}
       </section>
     </div>

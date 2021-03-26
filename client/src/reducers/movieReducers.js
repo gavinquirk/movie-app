@@ -8,6 +8,9 @@ import {
   MOVIE_TRENDING_FAIL,
   MOVIE_TRENDING_REQUEST,
   MOVIE_TRENDING_SUCCESS,
+  MOVIE_UPCOMING_FAIL,
+  MOVIE_UPCOMING_REQUEST,
+  MOVIE_UPCOMING_SUCCESS,
 } from '../constants/movieConstants';
 
 // First, set loading to true and send empty array
@@ -56,6 +59,22 @@ export const trendingMovieReducer = (state = { movies: [] }, action) => {
       };
     case MOVIE_TRENDING_FAIL:
       return { trendingMoviesLoading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const upcomingMovieReducer = (state = { movies: [] }, action) => {
+  switch (action.type) {
+    case MOVIE_TRENDING_REQUEST:
+      return { upcomingMoviesloading: true, movies: [] };
+    case MOVIE_TRENDING_SUCCESS:
+      return {
+        upcomingMoviesLoading: false,
+        movies: action.payload.results,
+      };
+    case MOVIE_TRENDING_FAIL:
+      return { upcomingMoviesLoading: false, error: action.payload };
     default:
       return state;
   }
