@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import Card from '../Card/Card';
 
@@ -63,3 +64,8 @@ export default class Carousel extends Component {
     );
   }
 }
+
+Carousel.propTypes = {
+  category: PropTypes.string,
+  data: PropTypes.array,
+};

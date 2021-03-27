@@ -66,14 +66,14 @@ export const trendingMovieReducer = (state = { movies: [] }, action) => {
 
 export const upcomingMovieReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
-    case MOVIE_TRENDING_REQUEST:
+    case MOVIE_UPCOMING_REQUEST:
       return { upcomingMoviesloading: true, movies: [] };
-    case MOVIE_TRENDING_SUCCESS:
+    case MOVIE_UPCOMING_SUCCESS:
       return {
         upcomingMoviesLoading: false,
         movies: action.payload.results,
       };
-    case MOVIE_TRENDING_FAIL:
+    case MOVIE_UPCOMING_FAIL:
       return { upcomingMoviesLoading: false, error: action.payload };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel/Carousel';
 import logo from './logo-large.png';
@@ -47,32 +47,32 @@ const Home = (props) => {
   // Movies
   useEffect(() => {
     dispatch(fetchTopMovies());
-  }, dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchPopularMovies());
-  }, dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchTrendingMovies());
-  }, dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchUpcomingMovies());
-  }, dispatch);
+  }, [dispatch]);
 
   // Shows
   useEffect(() => {
     dispatch(fetchTopShows());
-  }, dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchPopularShows());
-  }, dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchTrendingShows());
-  }, dispatch);
+  }, [dispatch]);
 
   return (
     <div className='Home'>
