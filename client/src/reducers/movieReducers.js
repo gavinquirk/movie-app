@@ -11,6 +11,9 @@ import {
   MOVIE_UPCOMING_FAIL,
   MOVIE_UPCOMING_REQUEST,
   MOVIE_UPCOMING_SUCCESS,
+  MOVIE_DETAILS_FAIL,
+  MOVIE_DETAILS_REQUEST,
+  MOVIE_DETAILS_SUCCESS,
 } from '../constants/movieConstants';
 
 // First, set loading to true and send empty array
@@ -75,6 +78,22 @@ export const upcomingMovieReducer = (state = { movies: [] }, action) => {
       };
     case MOVIE_UPCOMING_FAIL:
       return { upcomingMoviesLoading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const movieDetailsReducer = (state = { details: [] }, action) => {
+  switch (action.type) {
+    case MOVIE_DETAILS_REQUEST:
+      return { movieDetailsloading: true, details: [] };
+    case MOVIE_DETAILS_SUCCESS:
+      return {
+        movieDetailsLoading: false,
+        details: action.payload.results,
+      };
+    case MOVIE_DETAILS_FAIL:
+      return { movieDetailsLoading: false, error: action.payload };
     default:
       return state;
   }

@@ -6,6 +6,7 @@ import {
   popularMovieReducer,
   trendingMovieReducer,
   upcomingMovieReducer,
+  movieDetailsReducer,
 } from './reducers/movieReducers';
 import {
   topShowReducer,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   popularMovies: popularMovieReducer,
   trendingMovies: trendingMovieReducer,
   upcomingMovies: upcomingMovieReducer,
+  movieDetails: movieDetailsReducer,
   topShows: topShowReducer,
   popularShows: popularShowReducer,
   trendingShows: trendingShowReducer,

@@ -11,6 +11,9 @@ import {
   MOVIE_UPCOMING_REQUEST,
   MOVIE_UPCOMING_SUCCESS,
   MOVIE_UPCOMING_FAIL,
+  MOVIE_DETAILS_REQUEST,
+  MOVIE_DETAILS_SUCCESS,
+  MOVIE_DETAILS_FAIL,
 } from '../constants/movieConstants';
 
 export const fetchTopMovies = () => async (dispatch) => {
@@ -101,6 +104,30 @@ export const fetchUpcomingMovies = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: MOVIE_UPCOMING_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const fetchMovieDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: MOVIE_DETAILS_REQUEST });
+
+    const response = await fetch(`http://localhost:5000/api/movies/${id}`);
+    const results = await response.json();
+
+    dispatch({
+      type: MOVIE_DETAILS_SUCCESS,
+      payload: {
+        results,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: MOVIE_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
