@@ -13,6 +13,7 @@ import {
   popularShowReducer,
   trendingShowReducer,
 } from './reducers/showReducers';
+import { userLoginReducer, userDetailsReducer } from './reducers/userReducers';
 
 // All reducers will be combined
 const reducer = combineReducers({
@@ -24,10 +25,17 @@ const reducer = combineReducers({
   topShows: topShowReducer,
   popularShows: popularShowReducer,
   trendingShows: trendingShowReducer,
+  userLogin: userLoginReducer,
+  userDetails: userDetailsReducer,
 });
 
+// User info stored in local storage to be used in initial state if exists
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null;
+
 // Redux will load with this initial state
-const initialState = {};
+const initialState = { userLogin: { userInfo: userInfoFromStorage } };
 
 const middleware = [thunk];
 
