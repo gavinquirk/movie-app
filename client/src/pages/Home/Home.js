@@ -84,49 +84,77 @@ const Home = (props) => {
         {topMoviesLoading ? (
           <Loader />
         ) : (
-          <Carousel category={'Top Rated Movies'} data={topMovies.movies} />
+          <Carousel
+            mediaType={'movies'}
+            category={'Top Rated Movies'}
+            data={topMovies.movies}
+          />
         )}
       </section>
       <section id='popular-movies'>
         {popularMoviesLoading ? (
           <Loader />
         ) : (
-          <Carousel category={'Popular Movies'} data={popularMovies.movies} />
+          <Carousel
+            category={'Popular Movies'}
+            data={popularMovies.movies}
+            mediaType={'movies'}
+          />
         )}
       </section>
       <section id='top-rated-shows'>
         {topShowsLoading ? (
           <Loader />
         ) : (
-          <Carousel category={'Top Rated Shows'} data={topShows.shows} />
+          <Carousel
+            category={'Top Rated Shows'}
+            data={topShows.shows}
+            mediaType={'shows'}
+          />
         )}
       </section>
       <section id='popular-shows'>
         {popularShowsLoading ? (
           <Loader />
         ) : (
-          <Carousel category={'Popular Shows'} data={popularShows.shows} />
+          <Carousel
+            category={'Popular Shows'}
+            data={popularShows.shows}
+            mediaType={'shows'}
+          />
         )}
       </section>
       <section id='trending-movies'>
         {trendingMoviesLoading ? (
           <Loader />
         ) : (
-          <Carousel category={'Trending Movies'} data={trendingMovies.movies} />
+          <Carousel
+            category={'Trending Movies'}
+            data={trendingMovies.movies}
+            mediaType={'movies'}
+          />
         )}
       </section>
       <section id='trending-shows'>
         {trendingShowsLoading ? (
           <Loader />
         ) : (
-          <Carousel category={'Trending Shows'} data={trendingShows.shows} />
+          <Carousel
+            category={'Trending Shows'}
+            data={trendingShows.shows}
+            mediaType={'shows'}
+          />
         )}
       </section>
       <section id='upcoming-movies'>
         {upcomingMoviesLoading ? (
           <Loader />
         ) : (
-          <Carousel category={'Upcoming Movies'} data={upcomingMovies.movies} />
+          <Carousel
+            category={'Upcoming Movies'}
+            data={upcomingMovies.movies}
+            mediaType={'movies'}
+          />
         )}
       </section>
     </div>

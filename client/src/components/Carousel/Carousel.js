@@ -12,13 +12,22 @@ export default class Carousel extends Component {
       dots: false,
       infinite: false,
       speed: 500,
-      slidesToShow: 8,
-      slidesToScroll: 5,
+      slidesToShow: 10,
+      slidesToScroll: 6,
       initialSlide: 0,
       adaptiveHeight: false,
       responsive: [
         {
-          breakpoint: 1366,
+          breakpoint: 1921,
+          settings: {
+            slidesToShow: 9,
+            slidesToScroll: 5,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 1367,
           settings: {
             slidesToShow: 5,
             slidesToScroll: 3,
@@ -27,7 +36,7 @@ export default class Carousel extends Component {
           },
         },
         {
-          breakpoint: 1024,
+          breakpoint: 1025,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 2,
@@ -36,7 +45,7 @@ export default class Carousel extends Component {
           },
         },
         {
-          breakpoint: 600,
+          breakpoint: 601,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
@@ -44,7 +53,7 @@ export default class Carousel extends Component {
           },
         },
         {
-          breakpoint: 480,
+          breakpoint: 481,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -57,7 +66,11 @@ export default class Carousel extends Component {
         <h2>{this.props.category}</h2>
         <Slider {...settings}>
           {this.props.data.map((result) => (
-            <Card key={result.id} data={result} />
+            <Card
+              key={result.id}
+              data={result}
+              mediaType={this.props.mediaType}
+            />
           ))}
         </Slider>
       </div>
