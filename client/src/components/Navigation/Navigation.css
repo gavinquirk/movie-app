@@ -12,3 +12,20 @@
 .nav-item {
   padding: 3px 5px;
 }
+.Navigation > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item > button {
+  color: var(--color-text-light);
+}
+
+.logout-button {
+  background-color: var(--color-red-primary);
+}
+
+.login-button {
+  background-color: var(--color-green-primary);
+}

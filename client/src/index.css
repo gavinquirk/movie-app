@@ -3,6 +3,8 @@
   --text-light: rgb(209, 210, 212);
   --heading-margin: 20px;
   --padding-default: 20px;
+  --color-red-primary: #ec4c4c;
+  --color-green-primary: #74d14c;
 }
 
 /* Global Styles */
@@ -43,6 +45,11 @@ h2 {
 section {
   padding-top: var(--padding-default);
   padding-bottom: var(--padding-default);
+}
+
+button {
+  border: none;
+  padding: 3px 6px;
 }
 
 .App {
