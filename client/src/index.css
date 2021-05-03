@@ -1,10 +1,14 @@
 /* Global Variables */
 :root {
   --text-light: rgb(209, 210, 212);
+  --text-size-small: 16px;
   --heading-margin: 20px;
   --padding-default: 20px;
+  --margin-default: 20px;
+  --margin-small: 10px;
   --color-red-primary: #ec4c4c;
   --color-green-primary: #74d14c;
+  --border-radius-default: 2px;
 }
 
 /* Global Styles */
@@ -50,6 +54,36 @@ section {
 button {
   border: none;
   padding: 3px 6px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form > label {
+  margin-bottom: var(--margin-small);
+}
+
+form > input {
+  border-radius: var(--border-radius-default);
+  margin-bottom: var(--margin-default);
+  padding: 3px 5px;
+  width: 100%;
+}
+
+form > button {
+  font-size: var(--text-size-small);
+  padding: 3px 5px;
+  margin-bottom: var(--margin-small);
+  background-color: var(--color-green-primary);
+  border-radius: var(--border-radius-default);
+}
+
+.form-container {
+  text-align: center;
+  width: 600px;
 }
 
 .App {

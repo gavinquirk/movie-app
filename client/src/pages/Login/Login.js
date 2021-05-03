@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Message from '../components/Message';
 import Loader from '../../components/Loader/Loader';
 import { login } from '../../actions/userActions';
+import './Login.css';
 
 const Login = ({ location, history }) => {
   const [email, setEmail] = useState('');
@@ -30,28 +31,30 @@ const Login = ({ location, history }) => {
 
   return (
     <div className='Login'>
-      {loading && <Loader />}
-      <h1>Sign In</h1>
-      {/* {error && <Message variant='danger'>{error}</Message>} */}
-      <form onSubmit={submitHandler}>
-        {/* Email */}
-        <label>Email Address</label>
-        <input
-          type='email'
-          placeholder='Enter Email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {/* Password */}
-        <label>Password</label>
-        <input
-          type='password'
-          placeholder='Enter Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type='submit'>Submit</button>
-      </form>
+      <div className='form-container'>
+        {loading && <Loader />}
+        <h1>Sign In</h1>
+        {/* {error && <Message variant='danger'>{error}</Message>} */}
+        <form onSubmit={submitHandler}>
+          {/* Email */}
+          <label>Email Address</label>
+          <input
+            type='email'
+            placeholder='Enter Email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {/* Password */}
+          <label>Password</label>
+          <input
+            type='password'
+            placeholder='Enter Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type='submit'>Submit</button>
+        </form>
+      </div>
     </div>
   );
 };
