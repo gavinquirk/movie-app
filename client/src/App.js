@@ -8,6 +8,7 @@ import Home from './pages/Home/Home';
 import Movies from './pages/Movies/Movies';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
 import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Navigation />
         <Switch>
           <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
           <Route path='/movies/:id' component={MovieDetails} />
           <Route exact path='/movies' component={Movies} />
           <Route exact path='/' component={Home} />

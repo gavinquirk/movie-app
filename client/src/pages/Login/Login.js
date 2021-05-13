@@ -55,6 +55,9 @@ const Login = ({ location, history }) => {
           <button type='submit'>Submit</button>
         </form>
       </div>
+      <div>
+        New Customer? <Link to={'/register'}>Register</Link>
+      </div>
     </div>
   );
 };
