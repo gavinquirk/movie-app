@@ -8,6 +8,7 @@ import Home from './pages/Home/Home';
 import Movies from './pages/Movies/Movies';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
 import Login from './pages/Login/Login';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path='/movies' component={Movies} />
           <Route exact path='/' component={Home} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
