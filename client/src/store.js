@@ -13,7 +13,7 @@ import {
   popularShowReducer,
   trendingShowReducer,
 } from './reducers/showReducers';
-import { userLoginReducer, userDetailsReducer } from './reducers/userReducers';
+import { userLoginReducer, userRegisterReducer, userDetailsReducer } from './reducers/userReducers';
 
 // All reducers will be combined
 const reducer = combineReducers({
@@ -26,6 +26,7 @@ const reducer = combineReducers({
   popularShows: popularShowReducer,
   trendingShows: trendingShowReducer,
   userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
 });
 
