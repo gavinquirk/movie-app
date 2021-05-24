@@ -24,6 +24,9 @@ const Navigation = (props) => {
         <li className='nav-item'>
           <Link to='/movies'>Movies</Link>
         </li>
+        <li className='nav-item'>
+          <Link to='/shows'>Shows</Link>
+        </li>
         {/* If userInfo exists, show logged in tools. Else, show logged out tools */}
         {userInfo ? (
           <>
