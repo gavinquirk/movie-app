@@ -1,51 +1,95 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel/Carousel';
+import Loader from '../../components/Loader/Loader';
+
+import {
+  fetchTopMovies,
+  fetchPopularMovies,
+  fetchTrendingMovies,
+  fetchUpcomingMovies,
+} from '../../actions/movieActions';
 import './Movies.css';
 
 const Movies = (props) => {
-  // State
-  const [topMovies, setTopMovies] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const dispatch = useDispatch();
 
-  // Hooks
+  const topMovies = useSelector((state) => state.topMovies);
+  const { topMoviesLoading } = topMovies;
+
+  const popularMovies = useSelector((state) => state.popularMovies);
+  const { popularMoviesLoading } = popularMovies;
+
+  const trendingMovies = useSelector((state) => state.trendingMovies);
+  const { trendingMoviesLoading } = trendingMovies;
+
+  const upcomingMovies = useSelector((state) => state.upcomingMovies);
+  const { upcomingMoviesLoading } = upcomingMovies;
+
   useEffect(() => {
-    fetchTopMovies();
-    fetchPopularMovies();
-    fetchUpcomingMovies();
-  }, []);
+    dispatch(fetchTopMovies());
+  }, [dispatch]);
 
-  const fetchTopMovies = async () => {
-    const response = await fetch('http://localhost:5000/api/movies/top');
-    const data = await response.json();
-    setTopMovies(data.results);
-  };
+  useEffect(() => {
+    dispatch(fetchPopularMovies());
+  }, [dispatch]);
 
-  const fetchPopularMovies = async () => {
-    const response = await fetch('http://localhost:5000/api/movies/popular');
-    const data = await response.json();
-    setPopularMovies(data.results);
-  };
+  useEffect(() => {
+    dispatch(fetchTrendingMovies());
+  }, [dispatch]);
 
-  const fetchUpcomingMovies = async () => {
-    const response = await fetch('http://localhost:5000/api/movies/upcoming');
-    const data = await response.json();
-    setUpcomingMovies(data.results);
-  };
+  useEffect(() => {
+    dispatch(fetchUpcomingMovies());
+  }, [dispatch]);
 
   return (
     <div className='Movies'>
       <section>
         <h1>All Movies</h1>
       </section>
-      <section>
-        <Carousel category={'Top Rated Movies'} data={topMovies} />
+      <section id='top-rated-movies'>
+        {topMoviesLoading ? (
+          <Loader />
+        ) : (
+          <Carousel
+            mediaType={'movies'}
+            category={'Top Rated Movies'}
+            data={topMovies.movies}
+          />
+        )}
       </section>
-      <section>
-        <Carousel category={'Popular Movies'} data={popularMovies} />
+      <section id='popular-movies'>
+        {popularMoviesLoading ? (
+          <Loader />
+        ) : (
+          <Carousel
+            category={'Popular Movies'}
+            data={popularMovies.movies}
+            mediaType={'movies'}
+          />
+        )}
       </section>
-      <section>
-        <Carousel category={'Upcoming Movies'} data={upcomingMovies} />
+      <section id='trending-movies'>
+        {trendingMoviesLoading ? (
+          <Loader />
+        ) : (
+          <Carousel
+            category={'Trending Movies'}
+            data={trendingMovies.movies}
+            mediaType={'movies'}
+          />
+        )}
+      </section>
+      <section id='upcoming-movies'>
+        {upcomingMoviesLoading ? (
+          <Loader />
+        ) : (
+          <Carousel
+            category={'Upcoming Movies'}
+            data={upcomingMovies.movies}
+            mediaType={'movies'}
+          />
+        )}
       </section>
     </div>
   );
